@@ -12,10 +12,11 @@ import (
 var MongoClient *mongo.Client
 
 //这里需要优化
-func initDB() {
+func InitDB() {
 	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
-	clientOptions := options.Client().ApplyURI("mongodb://mongo:6379")
+	clientOptions := options.Client().ApplyURI("mongodb://mongo:27017")
+	clientOptions.SetAuth(options.Credential{Username: "root", Password: "root"})
 	var err error
 	MongoClient, err = mongo.Connect(ctx, clientOptions)
 	if err != nil {

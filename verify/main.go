@@ -1,7 +1,12 @@
 package main
 
-func main() {
-}
+import (
+	"net/http"
+	"verify/controller"
+	"verify/dao"
+)
 
-type RequestHandler struct {
+func main() {
+	dao.InitDB()
+	http.ListenAndServe(":8080", controller.InitHandler())
 }

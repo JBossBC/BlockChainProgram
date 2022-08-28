@@ -1,0 +1,26 @@
+version: "3"
+services:
+
+  mongo:
+      image: mongo
+      ports: 
+        - 27017:27017
+      restart: always
+      environment: 
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: root
+        MONGO_INITDB_DATABASE: users
+      deploy:
+         mode: replicated
+         replicas: 1  
+  verify:
+      ports:
+         - 8080:8081
+      build:
+         context: ./verify
+         dockerfile: ./verify/verify.dockerfile   
+      volumes:
+        - ./db-data/mongo:/data/db
+      deploy:
+         mode: replicated
+         replicas: 1               

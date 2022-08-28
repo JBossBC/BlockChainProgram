@@ -3,7 +3,8 @@ package util
 type StatusCode int
 
 const (
-	success StatusCode = iota
-	failed
-	systemError
+	Success StatusCode = iota
+	SystemError
+	UserNameError
+	PasswordError
 )
