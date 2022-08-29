@@ -1,6 +1,6 @@
 FROM golang:1.18-alpine as builder
 RUN mkdir /app
-COPY user_mode/. /app
+COPY . /app
 
 WORKDIR /app
 
