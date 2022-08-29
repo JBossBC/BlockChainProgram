@@ -2,7 +2,7 @@ FROM golang:1.17.6
 
 RUN mkdir /app
 
-COPY servers_distribute/. /app
+COPY . /app
 
 WORKDIR /app
 

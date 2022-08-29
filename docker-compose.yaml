@@ -5,7 +5,7 @@ services:
          - 8080:8080
       build:
         context: ./servers_distribute
-        dockerfile: ./../servers_distribute.dockerfile
+        dockerfile: ./servers_distribute.dockerfile
       restart: always
       deploy:
         mode: replicated
@@ -27,7 +27,7 @@ services:
          - 8080:8081
       build:
          context: ./user_mode
-         dockerfile: ./user_mode/user_mode.dockerfile   
+         dockerfile: ./user_mode.dockerfile   
       volumes:
         - ./db-data/mongo:/data/db
       deploy:
