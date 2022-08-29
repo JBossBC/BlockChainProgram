@@ -5,20 +5,19 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"verify/service"
-	"verify/util"
+	"user_mode/service"
+	"user_mode/util"
 )
 
 type VerifyResponse struct {
-	Result bool  `json:result`
-	Err    error `json:err`
+	AbstractRepsonse
 }
 
 func VerifyUser(w *http.ResponseWriter, r *http.Request) {
 	var resultMap, err = util.ConvertRequestByJSON(r)
 	var responseBody = &VerifyResponse{}
 	if err != nil {
-		responseBody.Err = err
+		responseBody.Message = err.Error()
 		responseBody.Result = false
 		bytes, _ := json.Marshal(responseBody)
 		io.WriteString(*w, string(bytes))
@@ -26,10 +25,11 @@ func VerifyUser(w *http.ResponseWriter, r *http.Request) {
 	result := service.GetVeiryService().VerifyUser(resultMap)
 	if result == util.Success {
 		responseBody.Result = true
-		responseBody.Err = nil
+		//无信息
+		responseBody.Message = ""
 	} else {
 		responseBody.Result = false
-		responseBody.Err = fmt.Errorf("用户名或密码错误")
+		responseBody.Message = fmt.Errorf("用户名或密码错误").Error()
 	}
 	bytes, _ := json.Marshal(responseBody)
 	io.WriteString(*w, string(bytes))

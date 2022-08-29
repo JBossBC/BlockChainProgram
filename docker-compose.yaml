@@ -1,6 +1,15 @@
 version: "3"
 services:
-
+  servers_distribute:
+      ports:
+         - 8080:8080
+      build:
+        context: ./servers_distribute
+        dockerfile: ./../servers_distribute.dockerfile
+      restart: always
+      deploy:
+        mode: replicated
+        replicas: 1
   mongo:
       image: mongo
       ports: 
@@ -13,14 +22,14 @@ services:
       deploy:
          mode: replicated
          replicas: 1  
-  verify:
+  users:
       ports:
          - 8080:8081
       build:
-         context: ./verify
-         dockerfile: ./verify/verify.dockerfile   
+         context: ./user_mode
+         dockerfile: ./user_mode/user_mode.dockerfile   
       volumes:
         - ./db-data/mongo:/data/db
       deploy:
          mode: replicated
-         replicas: 1               
+         replicas: 1 
