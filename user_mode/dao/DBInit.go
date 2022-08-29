@@ -1,8 +1,9 @@
-package dao
+package db
 
 import (
 	"context"
 	"fmt"
+	"log"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -22,4 +23,5 @@ func InitDB() {
 	if err != nil {
 		panic(fmt.Errorf("mongo db init err :%s", err.Error()))
 	}
+	log.Println("Init mongoDB successfully")
 }

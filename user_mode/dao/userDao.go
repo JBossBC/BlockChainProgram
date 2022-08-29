@@ -2,9 +2,10 @@ package dao
 
 import (
 	"context"
-	"go.mongodb.org/mongo-driver/bson"
 	"sync"
 	"time"
+
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 type UserDao struct {
