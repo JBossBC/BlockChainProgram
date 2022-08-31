@@ -3,14 +3,14 @@ package main
 import (
 	"log"
 	"net/http"
-	"verify/controller"
-	"verify/dao"
+	"user_mode/controller"
+	"user_mode/dao"
+	"user_mode/task"
 )
 
 func main() {
-	log.Println("Starting Init DB.... ")
 	dao.InitDB()
-	log.Println("Starting Init handler...")
+	task.StartTask()
 	err := http.ListenAndServe(":8080", controller.InitHandler())
 	if err != nil {
 		log.Panic("Init http server error:", err.Error())

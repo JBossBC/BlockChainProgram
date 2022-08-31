@@ -64,6 +64,7 @@ func GetHandler() *myHandler {
 //
 //	}
 //}
+//TODO error :jsonfile hasn't find
 func InitRoutes() {
 	log.Println("Starting init routes...")
 	jsonFile, err := os.OpenFile("./Controller/routes.json", os.O_APPEND, 0644)

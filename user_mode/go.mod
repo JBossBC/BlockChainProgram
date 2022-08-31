@@ -2,7 +2,10 @@ module user_mode
 
 go 1.17
 
-require go.mongodb.org/mongo-driver v1.10.1
+require (
+	github.com/go-sql-driver/mysql v1.6.0
+	go.mongodb.org/mongo-driver v1.10.1 // indirect
+)
 
 require (
 	github.com/golang/snappy v0.0.1 // indirect
