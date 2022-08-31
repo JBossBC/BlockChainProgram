@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"log"
 	"net/http"
 	"user_mode/util"
 )
@@ -9,6 +10,7 @@ type MyHandler struct {
 }
 
 func InitHandler() *MyHandler {
+	log.Println("Starting server handler...")
 	return &MyHandler{}
 }
 
@@ -20,5 +22,11 @@ func (handler *MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	case "verify":
 		VerifyUser(&w, r)
 	case "create":
+		CreateUser(&w, r)
+	case "update":
+		UpdateUser(&w, r)
+	case "delete":
+		DeleteUser(&w, r)
 	}
+
 }

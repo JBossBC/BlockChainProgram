@@ -1,12 +1,10 @@
 package util
 
-import "fmt"
-
-func InterfaceConvertString(data interface{}) (string, error) {
+func InterfaceConvertString(data interface{}) string {
 	switch data.(type) {
 	case string:
-		return data.(string), nil
+		return data.(string)
 	default:
-		return "", fmt.Errorf("this data convert to string error")
+		return ""
 	}
 }
