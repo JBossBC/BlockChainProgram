@@ -10,18 +10,16 @@ services:
       deploy:
         mode: replicated
         replicas: 1
-  mongo:
-      image: mongo
-      ports: 
-        - 27017:27017
+  user_db:
+      ports:
+        -3306:3306
+      image: mysql:latest 
+      volumes: 
+        - ./db-data/.:/docker-entrypoint-initdb.d
       restart: always
-      environment: 
-        MONGO_INITDB_ROOT_USERNAME: root
-        MONGO_INITDB_ROOT_PASSWORD: root
-        MONGO_INITDB_DATABASE: users
-      deploy:
+      deploy: 
          mode: replicated
-         replicas: 1  
+         replicas: 1
   users:
       ports:
          - 8080:8081

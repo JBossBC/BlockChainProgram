@@ -22,7 +22,6 @@ var (
 // 	Create_at time.Time `bson:"create_at"`
 // 	Delete_at time.Time `bson:"delete_at"`
 // }
-
 type User struct {
 	Id        int64     `db:"id"`
 	Username  string    `db:"username"`
@@ -39,6 +38,7 @@ func GetUserDao() *UserDao {
 }
 
 //自动化生成预编译sql语句
+
 func (u *UserDao) GetUserInfo(userName string) (*User, error) {
 	var user *User
 	precompile := "select * from  users where username=? and delete_time=''"

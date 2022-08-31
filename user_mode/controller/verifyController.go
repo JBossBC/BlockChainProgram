@@ -32,6 +32,7 @@ func CreateUser(w *http.ResponseWriter, r *http.Request) {
 	var responseBody = &AbstractRepsonse{}
 	defer handleDataToResponse(w, responseBody)
 	if data["username"] == nil || data["password"] == nil {
+		responseBody.Message = fmt.Sprintf("information defect")
 		return
 	}
 	if err != nil {
@@ -52,6 +53,7 @@ func UpdateUser(w *http.ResponseWriter, r *http.Request) {
 	var responseBody = &AbstractRepsonse{}
 	defer handleDataToResponse(w, responseBody)
 	if data["username"] == nil || data["password"] == nil {
+		responseBody.Message = fmt.Sprintf("information defect")
 		return
 	}
 	if err != nil {
@@ -71,6 +73,7 @@ func DeleteUser(w *http.ResponseWriter, r *http.Request) {
 	var responseBody = &AbstractRepsonse{}
 	defer handleDataToResponse(w, responseBody)
 	if data["username"] == nil || data["password"] == nil {
+		responseBody.Message = fmt.Sprintf("information defect")
 		return
 	}
 	if err != nil {

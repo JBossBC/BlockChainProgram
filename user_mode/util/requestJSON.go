@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+//https://localhost:8080/  ? username=?&password=?&
 //是直接解析为对象还是解析为map???? V1.0解析为map可迭代性可能会更高
 func ConvertRequestByJSON(r *http.Request) (map[string]interface{}, error) {
 	bytes, err := ioutil.ReadAll(r.Body)

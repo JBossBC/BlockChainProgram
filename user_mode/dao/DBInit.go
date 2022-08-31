@@ -73,12 +73,13 @@ func getMysqlDSN() string {
 
 func InitConfigFile() {
 	log.Println("Starting init database config file... ")
-	file, err := os.Open("./dao/dbConfig.xml")
+	file, err := os.OpenFile("./dao/dbConfig.xml", os.O_APPEND, 0644)
+	defer file.Close()
 	if err != nil {
 		panic(fmt.Sprintf("database config init error :%s", err.Error()))
 	}
 	DBConfig = &Config{}
-	err = xml.NewEncoder(file).Encode(DBConfig)
+	err = xml.NewDecoder(file).Decode(DBConfig)
 	if err != nil {
 		panic(fmt.Sprintf("xml analy error: %s", err.Error()))
 	}

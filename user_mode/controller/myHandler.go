@@ -28,4 +28,5 @@ func (handler *MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	case "delete":
 		DeleteUser(&w, r)
 	}
+
 }

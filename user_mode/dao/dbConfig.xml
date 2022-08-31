@@ -3,7 +3,7 @@
 <mysql>
     <username>root</username>
     <password>root</password>
-    <host>127.0.0.1</host>
+    <host>user_db</host>
     <port>3306</port>
     <database>users</database>
 </mysql>
@@ -13,4 +13,4 @@
     <port>6379</port>
     <database>9</database>
 </redis>
-</config><Config></Config><Config></Config>
+</config>
