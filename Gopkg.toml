@@ -1,0 +1,7 @@
+ignored = ["github.com/metarticle/heroes-service/chaincode"]
+
+[[constraint]]
+  # Release v1.0.0-alpha4
+  # v1.0.0
+  name = "github.com/hyperledger/fabric-sdk-go"
+  revision = "fe78138b49fb42ce62c52e2556260542a58611a6"
