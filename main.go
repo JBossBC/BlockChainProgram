@@ -62,6 +62,13 @@ func main() {
 	} else {
 		fmt.Println("Response from the query article: ", res)
 	}
+	
+	response, err = fSetup.UpdateArticle()
+	if err != nil {
+		fmt.Printf("Unable to update article on the chaincode: %v\n", err)
+	} else {
+		fmt.Println("Response from the update article: ", res)
+	}
 
 	// Launch the web application listening
 	/*

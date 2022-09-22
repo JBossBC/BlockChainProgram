@@ -34,6 +34,8 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		return t.CreateArticle(stub, args)
 	case "queryArticle":
 		return t.QueryArticle(stub, args)
+	case "updateArticle":
+		return t.UpdateArticle(stub,args)	
 	}
 
 	return shim.Error("请输入正确的函数名称")

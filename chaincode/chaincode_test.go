@@ -67,4 +67,18 @@ func Test(t *testing.T) {
 	marshal,_ := json.Marshal(article)
 	fmt.Println("--------------添加文章---------------")
 	checkInvoke(t, stub, [][]byte{[]byte("createArticle"), marshal})
+	
+	article = Article{Key: "1",Name: "a",DataFinger: "1",Author: "a",Submitter: "a",CompletionTime: "1",ReadPrice: "0.1",DownloadPrice: "0.5",CheckStatus: "1",Status: "1"}
+	marshal,_ = json.Marshal(article)
+	fmt.Println("--------------更新文章1---------------")
+	fmt.Println(marshal)
+	checkInvoke(t, stub, [][]byte{[]byte("updateArticle"), marshal})
+	checkInvoke(t, stub, [][]byte{[]byte("queryArticle"), []byte("1")})
+
+	article = Article{Key: "1",Name: "",DataFinger: "",Author: "",Submitter: "",CompletionTime: "2",ReadPrice: "",DownloadPrice: "",CheckStatus: "",Status: ""}
+	marshal,_ = json.Marshal(article)
+	fmt.Println("--------------更新文章2---------------")
+	fmt.Println(marshal)
+	checkInvoke(t, stub, [][]byte{[]byte("updateArticle"), marshal})
+	checkInvoke(t, stub, [][]byte{[]byte("queryArticle"), []byte("1")})
 }
