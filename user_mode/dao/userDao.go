@@ -28,6 +28,7 @@ type User struct {
 	Password  string    `db:"password"`
 	Create_at time.Time `db:"create_time"`
 	Delete_at time.Time `db:"delete_time"`
+	Update_at time.Time `db:"update_time"`
 }
 
 func GetUserDao() *UserDao {
@@ -44,20 +45,27 @@ func (u *UserDao) GetUserInfo(userName string) (*User, error) {
 	precompile := "select * from  users where username=? and delete_time=''"
 	ctx, cancel := context.WithTimeout(context.TODO(), 10*time.Second)
 	defer cancel()
+	var flag =false
+	for !flag{
+	 var nowTime=time.Now()
 	row := MysqlClient.QueryRowContext(ctx, precompile, user)
 	err := row.Scan(&user)
 	if err != nil {
 		return nil, err
 	}
+	if  nowTime.After(user.Update_at){
+		flag=true
+	}
+}
 	return user, nil
 }
 
 func (u *UserDao) InsertUserInfo(user *User) error {
-	prepare, err := MysqlClient.Prepare("insert into users(username,password,create_time) values(?,?,?)")
+	prepare, err := MysqlClient.Prepare("insert into users(username,password,create_time,update_time) values(?,?,?,?)")
 	if err != nil {
 		return err
 	}
-	result, err := prepare.Exec(user.Username, user.Password, user.Create_at)
+	result, err := prepare.Exec(user.Username, user.Password, user.Create_at,User.Update_at)
 	if err != nil {
 		return err
 	}
@@ -69,13 +77,13 @@ func (u *UserDao) InsertUserInfo(user *User) error {
 }
 
 func (u *UserDao) UpdateUserInfo(user *User) error {
-	prepare, err := MysqlClient.Prepare("update users set password=?  where username=? and delete_time=''")
+	prepare, err := MysqlClient.Prepare("update users set password=? and update_time=?  where username=? and delete_time=''")
 	if err != nil {
 		return err
 	}
 	ctx, cancel := context.WithTimeout(context.TODO(), 10*time.Second)
 	defer cancel()
-	execContext, err := prepare.ExecContext(ctx, user.Password, user.Username)
+	execContext, err := prepare.ExecContext(ctx, user.Password,user.Update_at user.Username)
 	if err != nil {
 		return err
 	}
@@ -87,11 +95,11 @@ func (u *UserDao) UpdateUserInfo(user *User) error {
 }
 
 func (u *UserDao) DeleteUserDao(user *User) error {
-	prepare, err := MysqlClient.Prepare("update users set delete_time=? where username=? and password=? and delete_time=''")
+	prepare, err := MysqlClient.Prepare("update users set delete_time=? and update_time=? where username=? and password=? and delete_time=''")
 	if err != nil {
 		return err
 	}
-	exec, err := prepare.Exec(time.Now(), user.Username, user.Password)
+	exec, err := prepare.Exec(time.Now(),time.Now(), user.Username, user.Password)
 	if err != nil {
 		return err
 	}

@@ -71,6 +71,9 @@ func (u *UserService) handleMapToUser(information map[string]interface{}) *dao.U
 	user := &dao.User{
 		Username: username,
 		Password: password,
+		Create_at:time.Now(),
+		Update_at:time.Now(),
+		delete_at:time.Now(),
 	}
 	return user
 }
