@@ -11,6 +11,11 @@ import (
 	"servers_distribute/util"
 )
 
+const (
+	//user_url = "http://users:8081/"
+	user_url = "http://localhost:8081/"
+)
+
 type myHandler struct {
 }
 
@@ -27,7 +32,8 @@ func (m *myHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch context[0] {
 	case "user_mode":
 		//分发服务
-		request, err := http.NewRequest(http.MethodPost, "http://localhost:8081/verify", r.Body)
+		var serverUrl = user_url + context[1]
+		request, err := http.NewRequest(http.MethodPost, serverUrl, r.Body)
 		if err != nil {
 			proxy.Message = err.Error()
 			marshal, _ := json.Marshal(&proxy)

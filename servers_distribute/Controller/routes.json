@@ -1,6 +1,6 @@
 {
   "user_mode": [
-    "create","verify"
+    "create","verify","update","delete"
   ],
   "logger_mode": [
 

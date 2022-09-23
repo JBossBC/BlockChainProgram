@@ -44,7 +44,7 @@ func GetUserDao() *UserDao {
 
 func (u *UserDao) GetUserInfo(userName string) (*User, error) {
 	var user *User
-	precompile := "select * from  users where username=? and delete_time=''"
+	precompile := "select * from  users where username=? and ISNULL(delete_time)"
 	ctx, cancel := context.WithTimeout(context.TODO(), 10*time.Second)
 	defer cancel()
 	var flag = false
