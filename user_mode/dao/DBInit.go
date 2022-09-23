@@ -17,7 +17,7 @@ type MysqlConfig struct {
 	Password string `xml:"password"`
 	Host     string `xml:"host"`
 	Port     int    `xml:"port"`
-	DataBase string `xml:"dataBase"`
+	DataBase string `xml:"database"`
 }
 type RedisConfig struct {
 	Host     string `xml:"host"`

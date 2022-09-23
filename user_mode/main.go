@@ -11,7 +11,7 @@ import (
 func main() {
 	dao.InitDB()
 	task.StartTask()
-	err := http.ListenAndServe(":8080", controller.InitHandler())
+	err := http.ListenAndServe(":8081", controller.InitHandler())
 	if err != nil {
 		log.Panic("Init http server error:", err.Error())
 	}

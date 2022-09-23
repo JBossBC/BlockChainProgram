@@ -11,7 +11,7 @@ import (
 )
 
 func VerifyUser(w *http.ResponseWriter, r *http.Request) {
-	var resultMap, err = util.ConvertRequestByJSON(r)
+	var resultMap, err = util.ConvertRequestByPost(r)
 	var responseBody = &AbstractRepsonse{}
 	defer handleDataToResponse(w, responseBody)
 	if err != nil {
@@ -28,7 +28,7 @@ func VerifyUser(w *http.ResponseWriter, r *http.Request) {
 	}
 }
 func CreateUser(w *http.ResponseWriter, r *http.Request) {
-	data, err := util.ConvertRequestByJSON(r)
+	data, err := util.ConvertRequestByPost(r)
 	var responseBody = &AbstractRepsonse{}
 	defer handleDataToResponse(w, responseBody)
 	if data["username"] == nil || data["password"] == nil {
@@ -49,7 +49,7 @@ func CreateUser(w *http.ResponseWriter, r *http.Request) {
 	}
 }
 func UpdateUser(w *http.ResponseWriter, r *http.Request) {
-	data, err := util.ConvertRequestByJSON(r)
+	data, err := util.ConvertRequestByPost(r)
 	var responseBody = &AbstractRepsonse{}
 	defer handleDataToResponse(w, responseBody)
 	if data["username"] == nil || data["password"] == nil {
@@ -69,7 +69,7 @@ func UpdateUser(w *http.ResponseWriter, r *http.Request) {
 	}
 }
 func DeleteUser(w *http.ResponseWriter, r *http.Request) {
-	data, err := util.ConvertRequestByJSON(r)
+	data, err := util.ConvertRequestByPost(r)
 	var responseBody = &AbstractRepsonse{}
 	defer handleDataToResponse(w, responseBody)
 	if data["username"] == nil || data["password"] == nil {
@@ -80,7 +80,7 @@ func DeleteUser(w *http.ResponseWriter, r *http.Request) {
 		responseBody.Message = err.Error()
 		return
 	}
-	statusCode := service.GetVeiryService().UpdateUserInfo(data)
+	statusCode := service.GetVeiryService().DeleteUserInfo(data)
 	if statusCode != util.Success {
 		responseBody.Message = "delete user failed"
 	} else {

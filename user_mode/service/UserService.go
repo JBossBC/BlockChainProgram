@@ -3,6 +3,7 @@ package service
 import (
 	"strings"
 	"sync"
+	"time"
 	"user_mode/dao"
 	"user_mode/util"
 )
@@ -68,9 +69,13 @@ func (u *UserService) DeleteUserInfo(information map[string]interface{}) util.St
 func (u *UserService) handleMapToUser(information map[string]interface{}) *dao.User {
 	username := util.InterfaceConvertString(information["username"])
 	password := util.InterfaceConvertString(information["password"])
+	cryptoPassword := util.MD5Crypto(password)
 	user := &dao.User{
-		Username: username,
-		Password: password,
+		Username:  username,
+		Password:  cryptoPassword,
+		Create_at: time.Now(),
+		Update_at: time.Now(),
+		Delete_at: time.Now(),
 	}
 	return user
 }

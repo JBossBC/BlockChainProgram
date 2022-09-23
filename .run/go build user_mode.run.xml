@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go build user_mode" type="GoApplicationRunConfiguration" factoryName="Go Application" singleton="false" nameIsGenerated="true">
+    <module name="blockchainProgram" />
+    <working_directory value="$PROJECT_DIR$/user_mode" />
+    <kind value="PACKAGE" />
+    <package value="user_mode" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/user_mode/main.go" />
+    <method v="2" />
+  </configuration>
+</component>

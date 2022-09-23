@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <config>
-<mysql>
-    <username>root</username>
-    <password>root</password>
-    <host>user_db</host>
-    <port>3306</port>
-    <database>users</database>
-</mysql>
+<!--<mysql>-->
+<!--    <username>root</username>-->
+<!--    <password>root</password>-->
+<!--    <host>user_db</host>-->
+<!--    <port>3306</port>-->
+<!--    <database>users</database>-->
+<!--</mysql>-->
+    <mysql>
+        <username>root</username>
+        <password>root</password>
+        <host>localhost</host>
+        <port>3306</port>
+        <database>users</database>
+    </mysql>
 <redis>
     <host>127.0.0.1</host>
     <password>root</password>
